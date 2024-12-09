@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ-Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="shortcut icon" href="/img/favicons.ico" type="image/x-icon">
+    <style>
+       /* Cấu trúc tổng thể */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Màu nền nhẹ nhàng */
+    margin: 0;
+}
+
+/* Container nội dung chính */
+.content-container {
+    display: flex;
+    flex-grow: 1;
+    margin: 20px;
+}
+
+/* Nội dung chính */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    border: 1px solid #007bff;
+    border-radius: 15px;
+    background-color: #ffffff; /* Màu nền trắng cho nội dung chính */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-left: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+/* Nút menu */
+.menu-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+}
+
+.menu-button {
+    cursor: pointer;
+    padding: 12px;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    background-color: #e9ecef;
+    transition: background-color 0.3s, transform 0.3s;
+    flex: 1;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.menu-button:hover {
+    background-color: #d1e7dd;
+    transform: translateY(-2px); /* Hiệu ứng nhấc lên */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color:#CDFDC8;
+    margin-top: auto;
+    font-size: 0.95em;
+    color: #666;
+    border-top: 1px solid #ddd; /* Đường viền trên footer */
+}
+
+/* Chỉ báo trạng thái */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: green;
+    margin-right: 10px;
+}
+
+/* Ẩn phần tử */
+.hidden {
+    display: none;
+}
+
+/* Thêm một số kiểu dáng cho tiêu đề */
+h1, h2, h3 {
+    color: #007bff;
+    margin: 10px 0;
+    font-weight: 600; /* Đậm hơn cho tiêu đề */
+}
+
+p {
+    margin: 10px 0;
+    color: #555; /* Màu chữ tối hơn cho văn bản */
+}
+
+      /*CSS điểm danh*/
+      #attendance {
+        background-color: #f0f8ff; /* Màu nền trắng cho phần điểm danh */
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Bóng đổ mạnh hơn */
+        margin: 20px 0; /* Khoảng cách trên và dưới */
+    }
+    
+    /* Tiêu đề */
+    #attendance h3 {
+        color: #007bff;
+        margin-bottom: 20px;
+        font-size: 1.5em; /* Kích thước lớn hơn */
+        text-align: center; /* Canh giữa tiêu đề */
+        font-weight: bold; /* Đậm hơn */
+    }
+    
+    /* Nhãn của form */
+    .form-label {
+        font-weight: bold;
+        color: #333; /* Màu chữ tối hơn */
+        display: block; /* Hiển thị theo chiều dọc */
+        margin-bottom: 8px; /* Khoảng cách dưới */
+    }
+    
+    /* Lợi ích */
+    .benefits {
+        margin-top: 20px;
+        border: 1px solid #007bff;
+        border-radius: 10px; /* Bo tròn góc */
+        padding: 15px; /* Padding cho nội dung */
+        background-color: #f8f9fa; /* Màu nền nhẹ cho phần lợi ích */
+    }
+    
+    .benefits h4 {
+        color: #007bff;
+        margin-bottom: 10px;
+        font-size: 1.2em; /* Kích thước lớn hơn */
+    }
+    
+    .benefits ul {
+        list-style-type: disc; /* Kiểu danh sách */
+        padding-left: 20px; /* Khoảng cách bên trái */
+    }
+    
+    .benefits ul li {
+        margin-bottom: 8px; /* Khoảng cách giữa các mục */
+        color: #555; /* Màu chữ tối hơn */
+    }
+    
+    /* Nút chính */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff; /* Màu chữ trắng */
+        padding: 10px 15px; /* Padding cho nút */
+        border-radius: 5px; /* Bo tròn góc */
+        transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển tiếp */
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-2px); /* Hiệu ứng nhấc lên khi hover */
+    }
+/*CSS khảo sát*/
+#survey {
+    background-color:  #f0f8ff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #9489FF;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.thank-you-message {
+    margin-top: 20px;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+/*CSS hoạt động*/
+#activities {
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.activity-list {
+    margin-top: 20px;
+}
+
+.activity-item {
+    background-color: #ffffff;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s;
+}
+
+.activity-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.activity-title {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.activity-description {
+    margin-bottom: 10px;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+/*CSS cộng đồng*/
+#community {
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #0056b3;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.community-overview {
+    margin-bottom: 20px;
+}
+
+.community-overview p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.community-features {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.feature-item {
+    background-color: #ffffff;
+    border: 2px solid #0056b3;
+    border-radius: 10px;
+    padding: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+.feature-item:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.feature-title {
+    color: #0056b3;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.feature-description {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 15px;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+/*Dịch vụ tư vấn*/
+#consultation {
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #9489FF;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.consultation-overview {
+    margin-bottom: 20px;
+}
+
+.consultation-overview p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.consultation-features {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.feature-item {
+    background-color: #ffffff;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    padding: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+.feature-item:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.feature-title {
+    color: #28a745;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.feature-description {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px 15px;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info h4 {
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+/*CSS thử thách*/
+#challenge {
+    background-color:  #f0f8ff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.challenge-overview {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.challenge-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.challenge-item {
+    background-color: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-item:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.challenge-header {
+    margin-bottom: 15px;
+}
+
+.challenge-title {
+    color: #3498db;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.challenge-subtitle {
+    color: #7f8c8d;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.challenge-description {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    padding: 10px 15px;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    color: #333;
+}
+/*CSS thử thách*/
+#leaderboard {
+    background-color:  #f0f8ff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+}
+
+h3 {
+    color: #2980b9;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.leaderboard-overview {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.leaderboard-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.leaderboard-item {
+    background-color: #ffffff;
+    border: 2px solid #2980b9;
+    border-radius: 10px;
+    padding: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-item:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.student-name {
+    color: #2980b9;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.activity-points {
+    color: #555;
+    font-size: 1.1em;
+}
+
+.medal {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.gold {
+    color: #ffd700;
+}
+
+.silver {
+    color: #c0c0c0;
+}
+
+.bronze {
+    color: #cd7f32;
+}
+
+.register-section {
+    margin-top: 30px;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    padding: 10px 15px;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #219150;
+    border-color: #1e7a44;
+}
+/**/
+
+    </style>
+</head>
+<body>
+
+<header style="position: relative;">
+    <div class="header-content">
+        <div class="logo">
+            <a href="/Post-login/index-login.html">
+                <img src="/img/logo.png" alt="Logo">
+            </a>
+        </div>
+        <nav>
+            <a href="/Post-login/index-login.html" class="trangchu">Trang Chủ</a>
+            <a href="/Post-login/clb.html" class="support-item">Câu Lạc Bộ</a>
+            <a href="/Post-login/hoctap.html" class="support-item">Học Tập</a>
+        </nav>
+        <div class="search-container" style="margin-right: 100px; flex-grow: 1;">
+            <input type="text" class="search-bar" placeholder="Tìm kiếm..." style="width: 100%;">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="icon-container" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%);">
+            <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                <i class="fas fa-user-friends" style="color: black; font-size: 24px;"></i>
+            </a>
+            <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                <i class="fas fa-comments" style="color: black; font-size: 24px;"></i>
+            </a>
+            <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                <i class="fas fa-bell" style="color: black; font-size: 24px;"></i>
+            </a>
+            <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                <i class="fas fa-user" style="color: black; font-size: 24px;"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="content-container">
+        <div class="main-content">
+            <div class="menu-buttons">
+                <div class="menu-button" onclick="showSection('attendance')">Điểm Danh</div>
+                <div class="menu-button" onclick="showSection('survey')">Khảo Sát</div>
+                <div class="menu-button" onclick="showSection('activities')">Hoạt Động</div>
+                <div class="menu-button" onclick="showSection('community')">Cộng Đồng</div>
+                <div class="menu-button" onclick="showSection('consultation')">Tư Vấn 24/7</div>
+                <div class="menu-button" onclick="showSection('challenge')">Thử Thách</div>
+                <div class="menu-button" onclick="showSection('leaderboard')">Bảng Xếp Hạng</div>
+
+            </div>
+                               <!-- điểm danh -->
+                               <div id="attendance" class="section">
+                                <h3 class="text-center">Điểm Danh</h3>
+                                <p class="text-center">Hãy điểm danh để nhận những lợi ích dưới đây!</p>
+                                <form id="attendance-form" class="mb-4">
+                                    <div class="mb-3">
+                                        <label for="student-name" class="form-label">Tên của bạn:</label>
+                                        <input type="text" class="form-control" id="student-name" placeholder="Nhập tên của bạn" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Điểm Danh</button>
+                                </form>
+                                <div class="benefits bg-light p-3 rounded">
+                                    <h4>Lợi Ích Khi Điểm Danh:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle"></i> Nhận Thông Báo Đặc Biệt</li>
+                                        <li><i class="fas fa-check-circle"></i> Tham Gia Rút Thăm</li>
+                                        <li><i class="fas fa-check-circle"></i> Xây Dựng Cộng Đồng</li>
+                                        <li><i class="fas fa-check-circle"></i> Theo Dõi Sự Tham Gia</li>
+                                        <li><i class="fas fa-check-circle"></i> Cơ Hội Nhận Học Bổng</li>
+                                    </ul>
+                                </div>
+                                <h4 class="mt-4">Hướng Dẫn Điểm Danh:</h4>
+                                <p class="text-justify">Để điểm danh, bạn chỉ cần nhập tên của mình vào ô bên trên và nhấn nút "Điểm Danh". Sau khi hoàn tất, bạn sẽ nhận được thông báo xác nhận và những lợi ích tương ứng.</p>
+                                
+                                <h4 class="mt-4">Câu Hỏi Thường Gặp:</h4>
+                                <ul class="list-unstyled">
+                                    <li><strong>Câu hỏi 1:</strong> Tôi có thể điểm danh nhiều lần trong ngày không?</li>
+                                    <li>Trả lời: Mỗi người chỉ được điểm danh một lần trong ngày để đảm bảo công bằng.</li>
+                                    <li><strong>Câu hỏi 2:</strong> Tôi có thể thay đổi tên nếu nhập sai không?</li>
+                                    <li>Trả lời: Khi bạn đã điểm danh, không thể thay đổi tên. Vui lòng kiểm tra kỹ trước khi gửi.</li>
+                                </ul>
+                            
+                            </div>
+                       <!-- Khảo sát -->
+                       <div id="survey" class="section">
+                        <h3 class="text-center">Khảo Sát Ý Kiến</h3>
+                        <p class="text-center">Chúng tôi rất muốn lắng nghe ý kiến của bạn để cải thiện dịch vụ.</p>
+                        <form id="survey-form" class="mb-4">
+                            <div class="mb-3">
+                                <label for="feedback" class="form-label">Ý kiến của bạn:</label>
+                                <textarea class="form-control" id="feedback" rows="4" placeholder="Nhập ý kiến hoặc gợi ý của bạn ở đây..." required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Bạn đánh giá dịch vụ của chúng tôi như thế nào?</label>
+                                <select class="form-select" id="service-rating" required>
+                                    <option value="" disabled selected>Chọn đánh giá của bạn</option>
+                                    <option value="excellent">Xuất sắc</option>
+                                    <option value="good">Tốt</option>
+                                    <option value="average">Trung bình</option>
+                                    <option value="poor">Kém</option>
+                                </select>
+                            </div>
+                    
+                            <button type="submit" class="btn btn-primary w-100">Gửi Ý Kiến</button>
+                        </form>
+                    
+                        <div class="thank-you-message hidden text-center">
+                            <h4>Cảm ơn bạn đã gửi ý kiến!</h4>
+                            <p>Chúng tôi sẽ xem xét và cải thiện dịch vụ dựa trên phản hồi của bạn.</p>
+                        </div>
+                    
+                        <h4 class="mt-4">Câu Hỏi Thường Gặp:</h4>
+                        <ul class="list-unstyled">
+                            <li><strong>Câu hỏi 1:</strong> Ý kiến của tôi có được bảo mật không?</li>
+                            <li>Trả lời: Tất cả các ý kiến đều được bảo mật và chỉ sử dụng cho mục đích cải thiện dịch vụ.</li>
+                            <li><strong>Câu hỏi 2:</strong> Tôi có thể gửi nhiều phản hồi không?</li>
+                            <li>Trả lời: Có, bạn có thể gửi nhiều ý kiến mà không bị giới hạn.</li>
+                        </ul>
+                    </div>
+<!-- Hoạt động -->
+<div id="activities" class="section">
+    <h3 class="text-center">Tham Gia Hoạt Động</h3>
+    <p class="text-center">Khám phá các hoạt động thú vị và cơ hội để kết nối với mọi người!</p>
+
+    <div class="activity-list">
+        <div class="activity-item">
+            <h5 class="activity-title">Sự Kiện Thể Thao</h5>
+            <p class="activity-description">Tham gia các sự kiện thể thao hàng tháng để rèn luyện sức khỏe và tinh thần đồng đội.</p>
+            <button class="btn btn-info" onclick="location.href='/events/sports.html'">Xem Chi Tiết</button>
+        </div>
+
+        <div class="activity-item">
+            <h5 class="activity-title">Workshop Kỹ Năng</h5>
+            <p class="activity-description">Tham gia các workshop để phát triển kỹ năng cá nhân và nghề nghiệp của bạn.</p>
+            <button class="btn btn-info" onclick="location.href='/events/workshop.html'">Xem Chi Tiết</button>
+        </div>
+
+        <div class="activity-item">
+            <h5 class="activity-title">Chương Trình Tình Nguyện</h5>
+            <p class="activity-description">Tham gia các chương trình tình nguyện để giúp đỡ cộng đồng và tạo ra sự khác biệt.</p>
+            <button class="btn btn-info" onclick="location.href='/events/volunteer.html'">Xem Chi Tiết</button>
+        </div>
+
+        <div class="activity-item">
+            <h5 class="activity-title">Buổi Gặp Gỡ Cựu Sinh Viên</h5>
+            <p class="activity-description">Kết nối với cựu sinh viên và mở rộng mạng lưới quan hệ của bạn tại các buổi gặp mặt định kỳ.</p>
+            <button class="btn btn-info" onclick="location.href='/events/alumni.html'">Xem Chi Tiết</button>
+        </div>
+    </div>
+</div>
+                     <!-- Cộng đồng -->
+                     <div id="community" class="section">
+                        <h3 class="text-center">Cộng Đồng Sinh Viên</h3>
+                        <p class="text-center">Hãy tham gia cộng đồng của chúng tôi để kết nối, chia sẻ và phát triển!</p>
+                    
+                        <div class="community-overview">
+                            <p class="text-justify">Cộng đồng sinh viên là nơi bạn có thể giao lưu, học hỏi và chia sẻ kinh nghiệm với những người cùng chí hướng. Từ các diễn đàn thảo luận đến các sự kiện giao lưu, có rất nhiều cơ hội để bạn kết nối và phát triển bản thân.</p>
+                        </div>
+                    
+                        <div class="community-features">
+                            <div class="feature-item">
+                                <h5 class="feature-title">Diễn Đàn Thảo Luận</h5>
+                                <p class="feature-description">Tham gia các cuộc thảo luận sôi nổi về các chủ đề học thuật, cuộc sống sinh viên và nhiều vấn đề khác.</p>
+                                <button class="btn btn-primary" onclick="location.href='/community/forum.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="feature-item">
+                                <h5 class="feature-title">Nhóm Học Tập</h5>
+                                <p class="feature-description">Tìm kiếm và tham gia các nhóm học tập để cùng nhau trao đổi kiến thức và hỗ trợ nhau trong học tập.</p>
+                                <button class="btn btn-primary" onclick="location.href='/community/study-groups.html'">Khám Phá Nhóm</button>
+                            </div>
+                    
+                            <div class="feature-item">
+                                <h5 class="feature-title">Sự Kiện Giao Lưu</h5>
+                                <p class="feature-description">Tham gia các sự kiện giao lưu để gặp gỡ, kết nối và tạo dựng những mối quan hệ mới.</p>
+                                <button class="btn btn-primary" onclick="location.href='/community/events.html'">Xem Sự Kiện</button>
+                            </div>
+                    
+                            <div class="feature-item">
+                                <h5 class="feature-title">Chia Sẻ Kinh Nghiệm</h5>
+                                <p class="feature-description">Chia sẻ những câu chuyện và kinh nghiệm của bạn, giúp nhau cùng phát triển trong hành trình học tập.</p>
+                                <button class="btn btn-primary" onclick="location.href='/community/share-experience.html'">Chia Sẻ Ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                         <!-- Tư vấn -->
+                         <div id="consultation" class="section">
+                            <h3 class="text-center">Dịch Vụ Tư Vấn 24/7</h3>
+                            <p class="text-center">Chúng tôi luôn sẵn sàng hỗ trợ bạn bất cứ khi nào!</p>
+                        
+                            <div class="consultation-overview">
+                                <p class="text-justify">Dịch vụ tư vấn 24/7 của chúng tôi được thiết kế để giúp bạn giải đáp mọi thắc mắc, từ học tập, đời sống đến các vấn đề cá nhân. Đội ngũ tư vấn viên chuyên nghiệp và nhiệt tình của chúng tôi luôn sẵn sàng lắng nghe và cung cấp những giải pháp tốt nhất cho bạn.</p>
+                            </div>
+                        
+                            <div class="consultation-features">
+                                <div class="feature-item">
+                                    <h5 class="feature-title">Tư Vấn Học Tập</h5>
+                                    <p class="feature-description">Hỗ trợ bạn lựa chọn môn học, phương pháp học tập hiệu quả và lập kế hoạch học tập.</p>
+                                    <button class="btn btn-success" onclick="location.href='/consultation/education.html'">Tìm Hiểu Thêm</button>
+                                </div>
+                        
+                                <div class="feature-item">
+                                    <h5 class="feature-title">Tư Vấn Tâm Lý</h5>
+                                    <p class="feature-description">Cung cấp hỗ trợ tinh thần và tư vấn về các vấn đề tâm lý trong cuộc sống hàng ngày.</p>
+                                    <button class="btn btn-success" onclick="location.href='/consultation/psychology.html'">Tìm Hiểu Thêm</button>
+                                </div>
+                        
+                                <div class="feature-item">
+                                    <h5 class="feature-title">Tư Vấn Nghề Nghiệp</h5>
+                                    <p class="feature-description">Giúp bạn định hướng nghề nghiệp, viết CV và chuẩn bị cho phỏng vấn xin việc.</p>
+                                    <button class="btn btn-success" onclick="location.href='/consultation/career.html'">Tìm Hiểu Thêm</button>
+                                </div>
+                        
+                                <div class="feature-item">
+                                    <h5 class="feature-title">Hỗ Trợ Kỹ Thuật</h5>
+                                    <p class="feature-description">Giải đáp các vấn đề kỹ thuật liên quan đến thiết bị và phần mềm.</p>
+                                    <button class="btn btn-success" onclick="location.href='/consultation/technical-support.html'">Tìm Hiểu Thêm</button>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <h5 class="feature-title">Tư Vấn Tài Chính</h5>
+                                    <p class="feature-description">Cung cấp hướng dẫn về quản lý tài chính cá nhân, lập ngân sách và tiết kiệm.</p>
+                                    <button class="btn btn-success" onclick="location.href='/consultation/finance.html'">Tìm Hiểu Thêm</button>
+                                </div>
+                            </div>
+                        
+                            <div class="contact-info text-center mt-4">
+                                <h4>Liên Hệ Với Chúng Tôi</h4>
+                                <p>Hotline: <strong>0336141436</strong></p>
+                                <p>Email: <strong>htu25578@gmail.com</strong></p>
+                            </div>
+                        </div>
+                                  
+                     <!-- Thử Thách -->
+                     <div id="challenge" class="section">
+                        <h3 class="text-center">Thử Thách Đỉnh Cao</h3>
+                        <p class="text-center">Sẵn sàng để vượt qua giới hạn của chính mình?</p>
+                    
+                        <div class="challenge-overview">
+                            <p class="text-justify">Tham gia vào những thử thách đầy kịch tính, nơi bạn có thể thử sức mình và khám phá khả năng tiềm ẩn. Mỗi thử thách không chỉ là một cuộc thi, mà còn là một hành trình để phát triển bản thân và đạt được những thành tựu đáng nhớ!</p>
+                        </div>
+                    
+                        <div class="challenge-list">
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">🏆 Thử Thách 30 Ngày Đọc Sách</h5>
+                                    <p class="challenge-subtitle">Khám phá thế giới qua từng trang sách!</p>
+                                </div>
+                                <p class="challenge-description">Đọc một cuốn sách mỗi ngày trong 30 ngày và chia sẻ cảm nhận.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/read30days.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">💪 Thử Thách Tập Luyện Thể Chất</h5>
+                                    <p class="challenge-subtitle">Cảm nhận sức mạnh của cơ thể!</p>
+                                </div>
+                                <p class="challenge-description">Tham gia chương trình tập luyện trong 30 ngày và theo dõi sự tiến bộ.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/fitness30days.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">👩‍🍳 Thử Thách Kỹ Năng Nấu Ăn</h5>
+                                    <p class="challenge-subtitle">Khám phá vị giác mới!</p>
+                                </div>
+                                <p class="challenge-description">Mỗi tuần thử sức với một công thức nấu ăn mới và chia sẻ thành phẩm.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/cookingchallenge.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">📝 Thử Thách Viết Blog</h5>
+                                    <p class="challenge-subtitle">Chia sẻ câu chuyện của bạn!</p>
+                                </div>
+                                <p class="challenge-description">Viết một bài blog mỗi tuần về những gì bạn đã học hoặc trải nghiệm.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/blogchallenge.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">🎨 Thử Thách Sáng Tạo Nghệ Thuật</h5>
+                                    <p class="challenge-subtitle">Khám phá khả năng sáng tạo của bạn!</p>
+                                </div>
+                                <p class="challenge-description">Hãy tạo ra một tác phẩm nghệ thuật mỗi tuần và tham gia triển lãm trực tuyến.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/artchallenge.html'">Tham Gia Ngay</button>
+                            </div>
+                    
+                            <div class="challenge-item">
+                                <div class="challenge-header">
+                                    <h5 class="challenge-title">📸 Thử Thách Chụp Ảnh</h5>
+                                    <p class="challenge-subtitle">Ghi lại khoảnh khắc đẹp!</p>
+                                </div>
+                                <p class="challenge-description">Chụp một bức ảnh mỗi ngày trong 30 ngày và chia sẻ với cộng đồng.</p>
+                                <button class="btn btn-primary" onclick="location.href='/challenges/photochallenge.html'">Tham Gia Ngay</button>
+                            </div>
+                        </div>
+                    
+                        <div class="contact-info text-center mt-4">
+                            <h4>Liên Hệ Để Chiến Thắng!</h4>
+                            <p>Hotline: <strong>0336141436</strong></p>
+                            <p>Email: <strong>htu25578@gmail.com</strong></p>
+                        </div>
+                    </div>
+                    
+                     <!-- Bảng xếp hạng -->
+                     <div id="leaderboard" class="section">
+                        <h3 class="text-center">Bảng Xếp Hạng Sinh Viên</h3>
+                        <p class="text-center">Ghi danh và xem ai là người hoạt động tích cực nhất!</p>
+                    
+                        <div class="leaderboard-overview">
+                            <p class="text-justify">Tham gia vào cuộc cạnh tranh và xem ai là sinh viên xuất sắc nhất! Bảng xếp hạng này sẽ được cập nhật hàng tuần, thể hiện những người có hoạt động tích cực nhất trong các thử thách. Hãy cùng nhau tạo động lực và khích lệ nhau phát triển!</p>
+                        </div>
+                    
+                        <div class="leaderboard-list">
+                            <div class="leaderboard-item">
+                                <div class="medal gold">
+                                    🥇
+                                </div>
+                                <h5 class="student-name">Nguyễn Văn A</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>150</strong></p>
+                            </div>
+                    
+                            <div class="leaderboard-item">
+                                <div class="medal silver">
+                                    🥈
+                                </div>
+                                <h5 class="student-name">Trần Thị B</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>140</strong></p>
+                            </div>
+                    
+                            <div class="leaderboard-item">
+                                <div class="medal bronze">
+                                    🥉
+                                </div>
+                                <h5 class="student-name">Lê Văn C</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>130</strong></p>
+                            </div>
+                    
+                            <div class="leaderboard-item">
+                                <h5 class="student-name">Phạm Thị D</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>120</strong></p>
+                            </div>
+                    
+                            <div class="leaderboard-item">
+                                <h5 class="student-name">Hoàng Văn E</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>110</strong></p>
+                            </div>
+                    
+                            <div class="leaderboard-item">
+                                <h5 class="student-name">Nguyễn Thị F</h5>
+                                <p class="activity-points">Điểm hoạt động: <strong>100</strong></p>
+                            </div>
+                        </div>
+                    
+                        <div class="register-section text-center mt-4">
+                            <button class="btn btn-success" onclick="location.href='/register.html'">Ghi Danh Ngay</button>
+                        </div>
+                    </div>
+
+
+<footer>
+    <p>&copy; Bản quyền thuộc về htu25578@gmail.com Nhóm 13</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showSection(sectionId) {
+        // Ẩn tất cả các phần
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.add('hidden');
+        });
+
+        // Hiện phần được chọn
+        const selectedSection = document.getElementById(sectionId);
+        selectedSection.classList.remove('hidden');
+    }
+</script>
+</body>
+</html>
