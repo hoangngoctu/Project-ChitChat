@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicons.ico" type="image/x-icon">
+    <title>Câu Lạc Bộ</title>
+    <style>
+        /* Toàn bộ phần thân */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Cho phép phần này co giãn khi cần */
+        }   
+        .main-container {
+            padding: 20px;
+            flex: 1; /* Đẩy footer xuống dưới */
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Phần logo và menu (trái) */
+        header .left-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* Logo */
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        header .logo span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Menu */
+        header nav {
+            display: flex;
+            gap: 20px;
+        }   
+
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #007bff;
+        }
+        .header-search {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 30px;
+        }
+
+        .header-search input {
+            padding: 8px 35px 8px 15px;
+            border: 0.2px solid black; /* Viền đen */
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+            width: 400px;
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+        }
+
+        
+
+        .header-search i {
+            position: absolute;
+            right: 10px;
+            font-size: 16px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        /* Phần biểu tượng (phải) */
+        header .icons {
+            display: flex;
+            gap: 25px;
+        }
+
+        header .icons i {
+            font-size: 20px;
+            cursor: pointer;
+            color: black; /* Màu đen */
+            transition: color 0.3s ease;
+        }
+
+        header .icons i:hover {
+            color: #007bff; /* Màu xanh khi hover */
+        }
+
+        /* Phần giao diện chính */
+        .main-container {
+            padding: 20px;
+            
+        }
+
+        .main-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px 40px 10px 15px;
+            border: 0.2px solid black; /* Viền đen */
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+        }
+
+
+        .search-bar i {
+            position: absolute;
+            right: 20%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .club-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .club-item {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 0.2px solid black;
+        }
+
+        .club-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .club-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 0.2px solid black; /* Viền đen */
+            border-radius: 50px;
+            background-color: #007bff;
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .club-buttons button:hover {
+            background: #0056b3;
+            transform: scale(1.05); 
+        }
+
+        .club-buttons button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); 
+        }
+
+        .club-info {
+            flex: 3;
+        }
+
+        .club-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .join-btn {
+            flex: 1;
+            text-align: center;
+        }
+
+        .join-btn button {
+            padding: 10px 20px;
+            border: 0.2px solid black; /* Viền đen */
+            background: linear-gradient(to right, #9489FF, #ABD5F0, #CDFDC8);
+            font-size: 16px;
+            border-radius: 50px; 
+            cursor: pointer;
+        }
+
+        .join-btn button:hover {
+            background: #0056b3;
+            transform: scale(1.05); 
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #CDFDC8;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="left-section">
+            <div class="logo">
+                <a href="/Post-login/index-login.html">
+                    <img src="/img/logo.png" alt="Logo">
+                </a>
+            </div>
+            <nav>
+                <a href="/Post-login/index-login.html" class="trangchu">Trang Chủ</a>
+                <a href="/Post-login/clb.html" class="support-item">Câu Lạc Bộ</a>
+                <a href="/Post-login/hoctap.html" class="support-item">Học Tập</a>
+            </nav>
+        </div>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="header-search">
+            <input type="text" placeholder="Tìm kiếm...">
+            <i>🔍</i>
+        </div>
+
+        <div class="icons">
+              <a href="/customer/profile-old user.html">
+                <i class="fas fa-user-friends"></i> <!--Icon kết bạn -->
+            <i class="fas fa-envelope"></i> <!-- Icon thư -->
+            <i class="fas fa-bell"></i> <!-- Icon thông báo -->
+            <i class="fas fa-user"></i> <!-- Icon người dùng -->
+              </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Nhập tên trường hoặc câu lạc bộ">
+            <i>🔍</i>
+        </div>
+        <div class="club-buttons">
+            <button>Tạo nhóm mới</button>
+            <button>Danh sách câu lạc bộ đã tham gia</button>
+        </div>
+        <div class="club-list">
+            <div class="club-item">
+                <div class="club-info">
+                    <p><strong>Tên câu lạc bộ:</strong></p>
+                    <p><strong>Thành viên:</strong></p>
+                    <p><strong>Số thành viên đang hoạt động:</strong></p>
+                </div>
+                <div class="join-btn">
+                    <button>Tham Gia Ngay</button>
+                </div>
+            </div>
+            <div class="club-item">
+                <div class="club-info">
+                    <p><strong>Tên câu lạc bộ:</strong></p>
+                    <p><strong>Thành viên:</strong></p>
+                    <p><strong>Số thành viên đang hoạt động:</strong></p>
+                </div>
+                <div class="join-btn">
+                    <button>Tham Gia Ngay</button>
+                </div>
+            </div>
+            <div class="club-item">
+                <div class="club-info">
+                    <p><strong>Tên câu lạc bộ:</strong></p>
+                    <p><strong>Thành viên:</strong></p>
+                    <p><strong>Số thành viên đang hoạt động:</strong></p>
+                </div>
+                <div class="join-btn">
+                    <button>Tham Gia Ngay</button>
+                </div>
+            </div>
+            <div class="club-item">
+                <div class="club-info">
+                    <p><strong>Tên câu lạc bộ:</strong></p>
+                    <p><strong>Thành viên:</strong></p>
+                    <p><strong>Số thành viên đang hoạt động:</strong></p>
+                </div>
+                <div class="join-btn">
+                    <button>Tham Gia Ngay</button>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; BẢN QUYỀN THUỘC VỀ htu25578@gmail.com NHÓM 13</p>
+    </footer>
+</body>
+</html>

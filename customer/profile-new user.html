@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChITCHAT - Profile</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicons.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f4f4f4; /* Màu nền của trang */
+            font-family: 'Arial', sans-serif; /* Phông chữ */
+        }
+
+
+
+        /**/
+        
+        .profile-container {
+            max-width: 1200px; /* Chiều rộng tối đa */
+            margin: 50px auto; /* Đặt giữa trang */
+            display: flex; /* Sử dụng flexbox */
+        }
+        
+        .menu {
+            flex: 1; /* Chiếm một phần không gian */
+            background: #fff; /* Màu nền menu */
+            border-radius: 10px; /* Bo góc */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+            padding: 30px; /* Padding bên trong */
+            margin-right: 20px; /* Khoảng cách bên phải */
+        }
+        
+        .menu h4 {
+            font-size: 1.8em; /* Kích thước tiêu đề */
+            color: #007bff; /* Màu tiêu đề */
+            margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+            text-align: center; /* Căn giữa */
+        }
+        
+        .menu a {
+            display: flex; /* Hiển thị linh hoạt */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            padding: 15px; /* Padding cho liên kết */
+            color: #333; /* Màu chữ */
+            text-decoration: none; /* Không gạch chân */
+            border-radius: 5px; /* Bo góc */
+            margin-bottom: 15px; /* Khoảng cách dưới mỗi liên kết */
+            transition: background 0.3s, color 0.3s; /* Hiệu ứng chuyển tiếp */
+            font-size: 1.1em; /* Kích thước chữ */
+            border: 1px solid transparent; /* Đường viền trong suốt */
+        }
+        
+        .menu a:hover {
+            background-color: #e9ecef; /* Màu nền khi di chuột */
+            color: #007bff; /* Màu chữ khi di chuột */
+            border: 1px solid #007bff; /* Đường viền khi di chuột */
+        }
+        
+        .content {
+            flex: 2; /* Chiếm hai phần không gian */
+            background: #fff; /* Màu nền nội dung */
+            border-radius: 10px; /* Bo góc */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+            padding: 30px; /* Padding bên trong */
+            height: calc(100vh - 100px); /* Chiều cao tối đa */
+            position: relative; /* Để xử lý vị trí */
+        }
+     
+      /* CSS Thông tin cá nhân */
+.profile-header {
+text-align: center; /* Căn giữa */
+margin-bottom: 30px; /* Khoảng cách dưới */
+}
+
+.profile-header img {
+border-radius: 50%; /* Hình tròn */
+width: 180px; /* Chiều rộng */
+height: 180px; /* Chiều cao */
+border: 3px solid #007bff; /* Đường viền */
+}
+
+.form-control {
+height: 45px; /* Chiều cao của input */
+padding: 10px; /* Padding bên trong */
+font-size: 16px; /* Kích thước chữ */
+}
+
+.btn {
+height: 45px; /* Chiều cao của nút */
+font-size: 16px; /* Kích thước chữ */
+}
+
+        /*CSS mục kết bạn*/
+        .info {
+            color: #213A58; /* Màu chữ thông tin */
+        }
+        
+       
+        
+        .friend-request, .friend-suggestion {
+            margin-bottom: 15px; /* Khoảng cách dưới */
+            padding: 15px; /* Padding bên trong */
+            border: 1px solid #e0e0e0; /* Đường viền */
+            border-radius: 5px; /* Bo góc */
+            background: #f9f9f9; /* Màu nền */
+            display: flex; /* Hiển thị linh hoạt */
+            justify-content: space-between; /* Căn chỉnh không gian */
+            align-items: center; /* Căn giữa theo chiều dọc */
+        }
+        
+        .friend-request button, .friend-suggestion button {
+            margin-left: 10px; /* Khoảng cách bên trái */
+            width: 100px; /* Chiều rộng nút */
+        }
+        
+        .friend-group {
+            display: flex; /* Hiển thị linh hoạt */
+            justify-content: space-between; /* Căn chỉnh không gian */
+            margin: 10px 0; /* Khoảng cách trên và dưới */
+        }
+        
+        .friend-group img {
+            width: 50px; /* Chiều rộng ảnh bạn bè */
+            height: 50px; /* Chiều cao ảnh bạn bè */
+            border-radius: 50%; /* Hình tròn */
+            margin-right: 10px; /* Khoảng cách bên phải */
+        }
+/*CSS mục thông báo*/
+.notifications {
+width: 100%; /* Chiều rộng đầy đủ */
+height: 100%; /* Chiều cao đầy đủ */
+padding: 20px; /* Padding bên trong */
+box-sizing: border-box; /* Để padding không ảnh hưởng đến kích thước */
+background: #f1f1f1; /* Màu nền */
+display: flex; /* Hiển thị linh hoạt */
+flex-direction: column; /* Sắp xếp theo chiều dọc */
+gap: 15px; /* Khoảng cách giữa các phần tử */
+position: absolute; /* Đặt ở vị trí tuyệt đối */
+top: 0; /* Vị trí trên cùng */
+left: 0; /* Vị trí bên trái */
+}
+
+.notification-list {
+flex-grow: 1; /* Cho phép danh sách thông báo mở rộng */
+overflow-y: auto; /* Thêm cuộn nếu cần */
+}
+
+.notification-item {
+padding: 15px; /* Padding bên trong */
+border-radius: 5px; /* Bo góc */
+margin-bottom: 10px; /* Khoảng cách dưới */
+background: #e9ecef; /* Màu nền */
+display: flex; /* Hiển thị linh hoạt */
+justify-content: space-between; /* Căn chỉnh không gian */
+align-items: center; /* Căn giữa theo chiều dọc */
+transition: background 0.3s; /* Hiệu ứng chuyển tiếp */
+width: 100%; /* Chiều rộng đầy đủ cho thanh thông báo */
+}
+
+.notification-item:hover {
+background: #d4d4d4; /* Màu nền khi di chuột */
+}
+
+.notification-time {
+font-size: 0.9em; /* Kích thước chữ thời gian */
+color: #6c757d; /* Màu chữ thời gian */
+}
+
+.btn-center {
+display: flex; /* Hiển thị linh hoạt */
+justify-content: center; /* Căn giữa */
+margin-top: 20px; /* Khoảng cách trên */
+}
+
+.btn-center button {
+padding: 10px 20px; /* Padding cho nút */
+background-color: #007bff; /* Màu nền cho nút */
+color: white; /* Màu chữ cho nút */
+border: none; /* Không có viền */
+border-radius: 5px; /* Bo góc cho nút */
+cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+}
+
+.btn-center button:hover {
+background-color: #0056b3; /* Màu nền khi di chuột qua */
+}
+
+
+        /* CSS cho phần đổi mật khẩu */
+        .change-password {
+            width: 100%; /* Chiều rộng đầy đủ */
+            height: 100%; /* Chiều cao đầy đủ */
+            padding: 20px; /* Padding bên trong */
+            box-sizing: border-box; /* Để padding không ảnh hưởng đến kích thước */
+            background: #f1f1f1; /* Màu nền */
+            display: flex; /* Hiển thị linh hoạt */
+            flex-direction: column; /* Sắp xếp theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa các phần tử */
+            position: absolute; /* Đặt ở vị trí tuyệt đối */
+            top: 0; /* Vị trí trên cùng */
+            left: 0; /* Vị trí bên trái */
+        }
+        
+        .change-password h3 {
+            margin: 0; /* Không có margin */
+        }
+        /*CSS các nhóm đã tham gia*/
+        .groups-section {
+            width: 100%; /* Chiều rộng đầy đủ */
+            height: 100%; /* Chiều cao đầy đủ */
+            padding: 20px; /* Padding bên trong */
+            box-sizing: border-box; /* Để padding không ảnh hưởng đến kích thước */
+            background: #f1f1f1; /* Màu nền */
+            display: flex; /* Hiển thị linh hoạt */
+            flex-direction: column; /* Sắp xếp theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa các phần tử */
+            position: absolute; /* Đặt ở vị trí tuyệt đối */
+            top: 0; /* Vị trí trên cùng */
+            left: 0; /* Vị trí bên trái */
+        }
+        
+        
+        .toggle-container {
+            display: flex;
+            padding: 15px;
+            background-color: #f7f9fc;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .toggle {
+            cursor: pointer;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            margin-right: 10px;
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle:hover {
+            background-color: #0056b3; /* Hiệu ứng hover */
+        }
+        
+        .group-list {
+            display: block;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        
+        .group-list h4 {
+            margin: 0 0 20px;
+            font-size: 28px;
+            color: #333;
+        }
+        
+        .group-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .group-item img {
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        
+        /* CSS cho phần tin nhắn */
+        .message-list {
+            width: 100%; /* Chiều rộng đầy đủ */
+            height: 100%; /* Chiều cao đầy đủ */
+            padding: 20px; /* Padding bên trong */
+            box-sizing: border-box; /* Để padding không ảnh hưởng đến kích thước */
+            background: #f9f9f9; /* Màu nền sáng hơn */
+            display: flex; /* Hiển thị linh hoạt */
+            flex-direction: column; /* Sắp xếp theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa các phần tử */
+            position: absolute; /* Đặt ở vị trí tuyệt đối */
+            top: 0; /* Vị trí trên cùng */
+            left: 0; /* Vị trí bên trái */
+            overflow-y: auto; /* Cho phép cuộn khi vượt quá chiều cao */
+            border-radius: 10px; /* Bo góc cho toàn bộ khung */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để nổi bật */
+        }
+        
+        .user {
+            display: flex; /* Sử dụng Flexbox để căn chỉnh */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            padding: 15px; /* Khoảng cách bên trong */
+            cursor: pointer; /* Hiển thị con trỏ chuột khi di chuột qua */
+            transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển màu nền và phóng to */
+            background-color: white; /* Màu nền cho từng người dùng */
+            border-radius: 8px; /* Bo góc cho mỗi người dùng */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+        }
+        
+        .user:hover {
+            background-color: #e9e9e9; /* Màu nền khi di chuột qua */
+            transform: scale(1.02); /* Phóng to nhẹ khi di chuột qua */
+        }
+        
+        .avatar {
+            width: 50px; /* Chiều rộng ảnh đại diện */
+            height: 50px; /* Chiều cao ảnh đại diện */
+            border-radius: 50%; /* Bo tròn ảnh đại diện */
+            margin-right: 15px; /* Khoảng cách bên phải */
+            border: 2px solid #007bff; /* Viền cho ảnh đại diện */
+        }
+        
+        .status {
+            width: 12px; /* Chiều rộng dấu trạng thái */
+            height: 12px; /* Chiều cao dấu trạng thái */
+            border-radius: 50%; /* Bo tròn dấu trạng thái */
+            background-color: green; /* Màu xanh cho trạng thái trực tuyến */
+            margin-right: 15px; /* Khoảng cách bên phải */
+            border: 2px solid white; /* Viền trắng cho dấu trạng thái */
+        }
+        
+
+        footer {
+            background-color: #CDFDC8; /* Màu nền footer */
+            color: black; /* Màu chữ footer */
+            text-align: center; /* Căn giữa */
+            padding: 20px 0; /* Padding trên và dưới */
+            margin-top: auto; /* Đặt ở dưới cùng */
+            font-size: 0.9em; /* Kích thước chữ */
+        }
+        
+    </style>
+</head>
+<body>
+    <header style="position: relative;">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/Post-login/index-login.html">
+                    <img src="/img/logo.png" alt="Logo">
+                </a>
+            </div>
+            <nav>
+                <a href="/Post-login/index-login.html" class="trangchu">Trang Chủ</a>
+                <a href="/Post-login/clb.html" class="support-item">Câu Lạc Bộ</a>
+                <a href="/Post-login/hoctap.html" class="support-item">Học Tập</a>
+            </nav>
+            <div class="search-container" style="margin-right: 100px; flex-grow: 1;">
+                <input type="text" class="search-bar" placeholder="Tìm kiếm..." style="width: 100%;">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="icon-container" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%);">
+                <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                    <i class="fas fa-user-friends" style="color: black; font-size: 24px;"></i> <!-- Biểu tượng kết bạn -->
+                </a>
+                <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                    <i class="fas fa-comments" style="color: black; font-size: 24px;"></i> <!-- Biểu tượng tin nhắn -->
+                </a>
+                <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                    <i class="fas fa-bell" style="color: black; font-size: 24px;"></i> <!-- Biểu tượng thông báo -->
+                </a>
+                <a href="/customer/profile.html" class="icon" style="margin-left: 15px;">
+                    <i class="fas fa-user" style="color: black; font-size: 24px;"></i> <!-- Biểu tượng thông tin cá nhân -->
+                </a>
+            </div>
+        </div>
+    </header>
+    
+
+    <main>
+        <div class="profile-container">
+            <div class="menu">
+                <h4>Menu</h4>
+                <a href="#" onclick="showContent('personalInfo')"><i class="fas fa-user"></i>Thông tin cá nhân</a>
+                <a href="#" onclick="showContent('friends')"><i class="fas fa-user-friends"></i>Kết bạn</a>
+                <a href="#" onclick="showContent('notifications')"><i class="fas fa-bell"></i>Thông báo</a>
+                <a href="#" onclick="showContent('changePassword')"><i class="fas fa-lock"></i>Đổi mật khẩu</a>
+                <a href="#" onclick="showContent('groups')"><i class="fas fa-users"></i>Các nhóm đã tham gia</a>
+                <a href="#" onclick="showContent('messages')"><i class="fas fa-comment"></i>Tin nhắn</a>
+                <a href="#" onclick="showContent('logout')"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+            </div>
+            <div class="content" id="contentArea">
+                <div class="info" id="contentDisplay">
+                
+                    <div class="profile-header">
+                        <img id="profileImage" src="/img/profile.jpg" alt="Chọn ảnh">
+                        <input type="file" id="fileInput" accept="image/*" style="margin-top: 10px;" onchange="previewImage(event)">
+                    </div>
+                    <div>
+                        <label>Tên tài khoản:</label>
+                        <input type="text" placeholder="Tên tài khoản" class="form-control mb-2">
+                    </div>
+                    <div>
+                        <label>Họ và tên:</label>
+                        <input type="text" placeholder="Họ và tên" class="form-control mb-2">
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" placeholder="Email" class="form-control mb-2">
+                    </div>
+                    <div>
+                        <label>Số điện thoại:</label>
+                        <input type="text" placeholder="Số điện thoại" class="form-control mb-2">
+                    </div>
+                    <div>
+                        <label>Thành viên:</label>
+                        <input type="text" placeholder="Thành viên" class="form-control mb-2">
+                    </div>
+                    <button class="btn btn-primary" onclick="updateProfile()">Cập nhật</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; Bản quyền thuộc về htu25578@gmail.com Nhóm 13</p>
+    </footer>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileImage').src = e.target.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showContent(section) {
+            const contentDisplay = document.getElementById('contentDisplay');
+            switch (section) {
+                case 'personalInfo':
+                    contentDisplay.innerHTML = `
+                      
+                        <div class="profile-header">
+                            <img id="profileImage" src="/img/profile.jpg" alt="Chọn ảnh">
+                            <input type="file" id="fileInput" accept="image/*" style="margin-top: 10px;" onchange="previewImage(event)">
+                        </div>
+                        <div>
+                            <label>Tên tài khoản:</label>
+                            <input type="text" placeholder="Tên tài khoản" class="form-control mb-2">
+                        </div>
+                        <div>
+                            <label>Họ và tên:</label>
+                            <input type="text" placeholder="Họ và tên" class="form-control mb-2">
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input type="email" placeholder="Email" class="form-control mb-2">
+                        </div>
+                        <div>
+                            <label>Số điện thoại:</label>
+                            <input type="text" placeholder="Số điện thoại" class="form-control mb-2">
+                        </div>
+                        <div>
+                            <label>Thành viên:</label>
+                            <input type="text" placeholder="Thành viên" class="form-control mb-2">
+                        </div>
+                        <button class="btn btn-primary" onclick="updateProfile()">Cập nhật</button>
+                    `;
+                    break;
+                    case 'friends':
+    contentDisplay.innerHTML = `   
+        <h4 class="mt-4" style="text-align: center; margin-bottom: 20px;">Gợi ý kết bạn</h4>
+        <div class="friend-group">
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Lê Minh Hoàng">
+                <strong>Lê Minh Hoàng</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Lê Minh Hoàng')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Phạm Thị Lan">
+                <strong>Phạm Thị Lan</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Phạm Thị Lan')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Hoàng Văn Nam">
+                <strong>Hoàng Văn Nam</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Hoàng Văn Nam')">Gửi lời mời</button>
+            </div>
+        </div>
+        <div class="friend-group">
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Đỗ Thị Hương">
+                <strong>Đỗ Thị Hương</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Đỗ Thị Hương')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Bùi Văn Kiên">
+                <strong>Bùi Văn Kiên</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Bùi Văn Kiên')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Phan Văn Dũng">
+                <strong>Phan Văn Dũng</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Phan Văn Dũng')">Gửi lời mời</button>
+            </div>
+        </div>
+        <div class="friend-group">
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Nguyễn Thị Mai">
+                <strong>Nguyễn Thị Mai</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Nguyễn Thị Mai')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Trần Văn An">
+                <strong>Trần Văn An</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Trần Văn An')">Gửi lời mời</button>
+            </div>
+            <div class="friend-suggestion">
+                <img src="/img/anhdaidien.jpg" alt="Lê Văn Tùng">
+                <strong>Lê Văn Tùng</strong>
+                <button class="btn btn-success btn-sm" onclick="sendFriendRequest('Lê Văn Tùng')">Gửi lời mời</button>
+            </div>
+        </div>
+    `;
+    break;
+                case 'notifications':
+                    contentDisplay.innerHTML = `
+                
+                       <div class="notifications">
+<div class="notification-list">
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 1</strong> - Chào mừng bạn đến với úng dụng ChitChat.
+            <div class="notification-time">1 giờ trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 1')">Xóa</button>
+    </div>
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 2</strong> - Hãy bắt đầu trải nghiệm với ChitChat.
+            <div class="notification-time">45 phút trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 2')">Xóa</button>
+    </div>
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 3</strong> - Có một lời mời kết bạn mới.
+            <div class="notification-time">30 phút trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 3')">Xóa</button>
+    </div>
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 4</strong> - Hãy bắt đầu điểm danh.
+            <div class="notification-time">20 phút trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 4')">Xóa</button>
+    </div>
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 5</strong> - Hãy thực hiện các thử thách của trang web.
+            <div class="notification-time">15 phút trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 5')">Xóa</button>
+    </div>
+    <div class="notification-item">
+        <div>
+            <strong>Thông báo 6</strong> - Bạn có một lời mời kết bạn mới.
+            <div class="notification-time">5 phút trước</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteNotification('Thông báo 6')">Xóa</button>
+    </div>
+</div>
+
+<div class="btn-center">
+    <button class="btn btn-secondary" onclick="showMoreNotifications()">Xem thông báo trước đó</button>
+</div>
+</div>
+                    `;
+                    break;
+                    case 'changePassword':
+                    contentDisplay.innerHTML = `
+                        <div id="changePassword" class="content-section">
+                            <div class="change-password">
+                                <h3>Đổi mật khẩu</h3>
+                                <div class="change-password-form">
+                                    <div class="form-group">
+                                        <label>Mật khẩu cũ:</label>
+                                        <input type="password" placeholder="Mật khẩu cũ" class="form-control mb-2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mật khẩu mới:</label>
+                                        <input type="password" placeholder="Mật khẩu mới" class="form-control mb-2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Xác nhận mật khẩu mới:</label>
+                                        <input type="password" placeholder="Xác nhận mật khẩu mới" class="form-control mb-2">
+                                    </div>
+                                    <button class="btn btn-success">Thay đổi mật khẩu</button>
+                                </div>
+                            </div>
+                        </div>
+                  
+
+                    `;
+                    break;
+                case 'groups':
+                    contentDisplay.innerHTML = `
+<div class="groups-section">
+<div class="toggle-container">
+    <div class="toggle" onclick="toggleGroups('clubs')">Câu Lạc Bộ</div>
+    <div class="toggle" onclick="toggleGroups('studyGroups')">Nhóm Học Tập</div>
+</div>
+<div>Hãy bắt đầu tìm kiếm các nhóm phù hợp với bạn😜</div>
+
+</div>
+
+                    `;
+                    break;
+                    case 'messages':
+                    contentDisplay.innerHTML = `
+                       <div>Hãy kết bạn và tìm kiếm để trò chuyện với những người bạn đầy thù vị trên ChitChat nhé!!</div>
+
+                    `;
+                    break;
+                case 'logout':
+                    window.location.href = '/index.html'; 
+                    break;
+                default:
+                    contentDisplay.innerHTML = '<h3>Chọn một mục từ menu để xem chi tiết.</h3>';
+            }
+        }
+
+        function updateProfile() {
+            alert("Cập nhật thành công!");
+        }
+
+        function acceptFriend(name) {
+            alert("Đã chấp nhận lời mời kết bạn từ " + name + "!");
+        }
+
+        function declineFriend(name) {
+            alert("Đã xóa lời mời kết bạn từ " + name + "!");
+        }
+
+        function sendFriendRequest(name) {
+            alert("Đã gửi lời mời kết bạn đến " + name + "!");
+        }
+
+        function deleteNotification(notification) {
+            alert("Đã xóa " + notification + "!");
+            // Logic để xóa thông báo
+        }
+
+        function showMoreNotifications() {
+            alert("Đã hiển thị thêm thông báo.");
+            // Logic để hiển thị thêm thông báo
+        }
+
+        function showClubGroups() {
+            alert("Hiển thị các câu lạc bộ.");
+        }
+
+        function showStudyGroups() {
+            alert("Hiển thị các nhóm học tập.");
+        }
+
+        function toggleGroups(type) {
+            const clubGroups = document.getElementById('club-groups');
+            const studyGroups = document.getElementById('study-groups');
+            
+            if (type === 'club') {
+                clubGroups.style.display = clubGroups.style.display === 'none' ? 'block' : 'none';
+                studyGroups.style.display = 'none'; // Ẩn nhóm học tập
+            } else {
+                studyGroups.style.display = studyGroups.style.display === 'none' ? 'block' : 'none';
+                clubGroups.style.display = 'none'; // Ẩn câu lạc bộ
+            }
+        }
+
+        //các nhóm đã tham gia 
+
+        function toggleGroups(group) {
+            const clubs = document.getElementById('clubs');
+            const studyGroups = document.getElementById('studyGroups');
+        
+            if (group === 'clubs') {
+                clubs.style.display = 'block';
+                studyGroups.style.display = 'none';
+            } else {
+                clubs.style.display = 'none';
+                studyGroups.style.display = 'block';
+            }
+        }
+        //tin nhắn 
+        function startChat(userName) {
+            alert('Bắt đầu trò chuyện với: ' + userName);
+            // Thêm logic để mở cửa sổ chat hoặc điều hướng đến trang chat
+        }
+
+        
+    </script>
+</body>
+</html>
